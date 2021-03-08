@@ -1,14 +1,8 @@
 ﻿using System.Windows;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.IO;
 
 namespace WpfApp1
 {
@@ -19,15 +13,19 @@ namespace WpfApp1
     {
         public MainWindow()
         {
-            Persons = new ObservableCollection<Person>();
-
             InitializeComponent();
 
+            Persons = new ObservableCollection<Person>();
             PersonsGrid.ItemsSource = Persons;
             PersonsListBox.ItemsSource = Persons;
+
+            Paths = new ObservableCollection<Path>();
+            PathsGrid.ItemsSource = Paths;
+
         }
 
-        public ObservableCollection<Person> Persons { get; set; }        
+        public ObservableCollection<Person> Persons { get; set; }
+        public ObservableCollection<Path> Paths { get; set; }
 
         private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -43,7 +41,7 @@ namespace WpfApp1
                 Persons.Add(new Person(_f, _l));
                 FirstBox.Clear();
                 LastBox.Clear();
-            }            
+            }
         }
 
         internal async Task HeavyMethod(Label label)
@@ -54,7 +52,7 @@ namespace WpfApp1
                 {
                     // UI operation goes inside of Invoke
                     label.Content += ".";
-                    // Note that: 
+                    // Note that:
                     //    Dispatcher.Invoke() blocks the UI thread anyway
                     //    but without it you can't modify UI objects from another thread
                 });
@@ -75,6 +73,32 @@ namespace WpfApp1
         {
             Person toRemove = (Person)PersonsListBox.SelectedItem;
             Persons.Remove(toRemove);
+        }
+
+        private void PathButton_Click(object sender, RoutedEventArgs e)
+        {
+            string path = System.IO.Path.GetFullPath(PathTextBox.Text);
+            PathTextBox.Clear();
+
+            while (path != null)
+            {
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    if (System.IO.File.Exists(path))
+                    {
+                        var type = "File";
+                        Paths.Add(new Path(path, type));
+                    }
+                    else if (System.IO.Directory.Exists(path))
+                    {
+                        var type = "Directory";
+                        Paths.Add(new Path(path, type));
+                    }
+                }
+
+                var _p = Directory.GetParent(path);
+                path = _p?.FullName;
+            }
         }
     }
 }

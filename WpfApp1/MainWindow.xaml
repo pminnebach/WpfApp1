@@ -6,69 +6,104 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel Orientation="Vertical" Margin="5">
-        <Grid Margin="5" Width="400" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Click="AddButton_Click"/>
+    <TabControl Margin="5" Padding="5">
+        <TabItem Header="Binding">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Grid Margin="5" Width="400" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Click="AddButton_Click"/>
 
-            <TextBox x:Name="FirstBox" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="LastBox" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="FirstBox" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="LastBox" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-            <Label x:Name="FirstLabel" Width="100" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    <Label x:Name="FirstLabel" Width="100" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.FirstName}" />
-            <Label x:Name="LastLabel"  Width="100" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    <Label x:Name="LastLabel"  Width="100" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.LastName}" />
-            <Label x:Name="RandomLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    <Label x:Name="RandomLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Content="e" />
-        </Grid>
+                </Grid>
 
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
 
-            <Button x:Name="RemoveButton" Content="RemoveG" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"
+                    <Button x:Name="RemoveButton" Content="RemoveG" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"
                     VerticalAlignment="Top" Click="RemoveButton_Click"/>
-            <Button x:Name="RemoveListButton" Content="RemoveL" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0"
+                    <Button x:Name="RemoveListButton" Content="RemoveL" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0"
                     VerticalAlignment="Top" Click="RemoveListButton_Click" />
 
-            <DataGrid x:Name="PersonsGrid" Grid.Column="0" Grid.Row="0"
+                    <DataGrid x:Name="PersonsGrid" Grid.Column="0" Grid.Row="0"
                       AutoGenerateColumns="False" AlternatingRowBackground="Beige"
                       GridLinesVisibility="None">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="First" Binding="{Binding FirstName}"/>
-                    <DataGridTextColumn Header="Last" Binding="{Binding LastName}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="First" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Last" Binding="{Binding LastName}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-            <ListBox x:Name="PersonsListBox" Grid.Column="2" Grid.Row="0"
+                    <ListBox x:Name="PersonsListBox" Grid.Column="2" Grid.Row="0"
                      HorizontalContentAlignment="Stretch" SelectionMode="Extended" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="75" />
-                                <ColumnDefinition Width="75" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding FirstName}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding LastName}"  Grid.Column="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-    </StackPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="75" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding FirstName}" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding LastName}"  Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Files and Folders">
+            <StackPanel Orientation="Vertical">
+                <Grid Height="75" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="44*" />
+                        <ColumnDefinition Width="485*" />
+                        <ColumnDefinition Width="265*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Path:" Grid.Row="0" Grid.Column="0" />
+                    <TextBox x:Name="PathTextBox" Grid.Row="0" Grid.Column="1" />
+                    <Button x:Name="PathButton" Content="Path" Grid.Row="0" Grid.Column="2" Click="PathButton_Click" />
+                </Grid>
+
+                <DataGrid x:Name="PathsGrid" Grid.Column="0" Grid.Row="0"
+                      AutoGenerateColumns="False" AlternatingRowBackground="Beige"
+                      GridLinesVisibility="None">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </Window>
