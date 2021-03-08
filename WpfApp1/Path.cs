@@ -60,10 +60,5 @@ namespace WpfApp1
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public DirectoryInfo GetParent(string path)
-        {
-            return Directory.GetParent(path);
-        }
     }
 }
