@@ -80,12 +80,13 @@ namespace WpfApp1
         private void PathButton_Click(object sender, RoutedEventArgs e)
         {
             Paths.Clear();
+            char[] quotes = { '\"', '\'' };
             string path = null;
 
             try
             {
                 // TODO: either trim quotes, or replace them to whitespace.
-                path = System.IO.Path.GetFullPath(PathTextBox.Text);
+                path = System.IO.Path.GetFullPath(PathTextBox.Text.Trim(quotes));
             }
             catch (System.ArgumentException ex)
             {
