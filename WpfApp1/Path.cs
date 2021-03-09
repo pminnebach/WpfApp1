@@ -113,21 +113,5 @@ namespace WpfApp1
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static AuthorizationRuleCollection GetAccess(object instance)
-        {
-            ObjectSecurity sd = instance as ObjectSecurity;
-            // Get DACL
-            CommonObjectSecurity cos = sd as CommonObjectSecurity;
-            if (cos != null)
-            {
-                return cos.GetAccessRules(true, true, typeof(NTAccount));
-            }
-            else
-            {
-                DirectoryObjectSecurity dos = sd as DirectoryObjectSecurity;
-                return dos.GetAccessRules(true, true, typeof(NTAccount));
-            }
-        }
     }
 }
