@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <TabControl Margin="5" Padding="5">
         <TabItem Header="Binding">
-            <StackPanel Orientation="Vertical" Margin="5">
+            <StackPanel Orientation="Vertical">
                 <Grid Margin="5" Width="400" HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -77,7 +77,7 @@
 
         <TabItem Header="Files and Folders">
             <StackPanel Orientation="Vertical">
-                <Grid Height="75" VerticalAlignment="Top">
+                <Grid Margin="5" Height="75" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="44*" />
                         <ColumnDefinition Width="485*" />
@@ -109,6 +109,14 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="The next BIG thing" Focusable="False">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="5">
+
+                </Grid>
             </StackPanel>
         </TabItem>
     </TabControl>
