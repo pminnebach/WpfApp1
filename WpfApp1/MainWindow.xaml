@@ -89,17 +89,23 @@
                         <RowDefinition Height="25" />
                     </Grid.RowDefinitions>
 
-                    <Label Content="Path:" Grid.Row="0" Grid.Column="0" />
-                    <TextBox x:Name="PathTextBox" Grid.Row="0" Grid.Column="1" />
-                    <Button x:Name="PathButton" Content="Path" Grid.Row="0" Grid.Column="2" Click="PathButton_Click" />
+                    <Label Content="User:" Grid.Row="0" Grid.Column="0" />
+                    <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" />
+
+                    <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
+                    <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" />
+                    <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="2" Click="PathButton_Click" />
                 </Grid>
 
                 <DataGrid x:Name="PathsGrid" Grid.Column="0" Grid.Row="0"
                       AutoGenerateColumns="False" AlternatingRowBackground="Beige"
-                      GridLinesVisibility="None">
+                      GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                        <DataGridTextColumn Header="IdentityReference" Binding="{Binding IdentityReference}"/>
+                        <DataGridTextColumn Header="AccessControlType" Binding="{Binding AccessControlType}"/>
+                        <DataGridTextColumn Header="FileSystemRights" Binding="{Binding FileSystemRights}"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

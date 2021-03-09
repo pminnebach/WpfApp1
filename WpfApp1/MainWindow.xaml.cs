@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.IO;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace WpfApp1
 {
@@ -77,7 +79,25 @@ namespace WpfApp1
 
         private void PathButton_Click(object sender, RoutedEventArgs e)
         {
-            string path = System.IO.Path.GetFullPath(PathTextBox.Text);
+            Paths.Clear();
+            string path = null;
+
+            try
+            {
+                // TODO: either trim quotes, or replace them to whitespace.
+                path = System.IO.Path.GetFullPath(PathTextBox.Text);
+            }
+            catch (System.ArgumentException ex)
+            {
+                string message = ex.Message;
+                MessageBox.Show(message);
+            }
+            catch (System.Exception ex)
+            {
+                string message = ex.Message;
+                MessageBox.Show(message);
+            }
+
             PathTextBox.Clear();
 
             while (path != null)
@@ -92,7 +112,30 @@ namespace WpfApp1
                     else if (System.IO.Directory.Exists(path))
                     {
                         var type = "Directory";
-                        Paths.Add(new Path(path, type));
+                        DirectoryInfo dir = new DirectoryInfo(path);
+
+                        try
+                        {
+                            DirectorySecurity sec = dir.GetAccessControl();
+                            foreach (FileSystemAccessRule acl in sec.GetAccessRules(true, true, typeof(NTAccount)))
+                            {
+                                IdentityReference i = acl.IdentityReference;
+                                AccessControlType a = acl.AccessControlType;
+                                FileSystemRights f = acl.FileSystemRights;
+
+                                Paths.Add(new Path(path, type, i, a, f));
+                            }
+                        }
+                        catch (System.UnauthorizedAccessException ex)
+                        {
+                            string message = ex.Message;
+                            MessageBox.Show(message);
+                        }
+                        catch (System.Exception ex)
+                        {
+                            string message = ex.Message;
+                            MessageBox.Show(message);
+                        }
                     }
                 }
 
