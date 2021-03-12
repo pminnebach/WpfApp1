@@ -76,32 +76,31 @@
         </TabItem>
 
         <TabItem Header="Files and Folders">
-            <StackPanel Orientation="Vertical">
-                <Grid Margin="5" Height="75" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*" />
-                        <ColumnDefinition Width="57*" />
-                        <ColumnDefinition Width="32*" />
-                        <ColumnDefinition Width="32*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
+            <Grid Margin="5" MinHeight="350" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="57*" />
+                    <ColumnDefinition Width="32*" />
+                    <ColumnDefinition Width="32*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
 
-                    <Label Content="User:" Grid.Row="0" Grid.Column="0" />
-                    <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" />
+                <Label Content="User:" Grid.Row="0" Grid.Column="0" />
+                <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" />
 
-                    <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
-                    <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" />
-                    <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" />
-                    <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" />
-                </Grid>
+                <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
+                <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" />
+                <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" />
+                <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" />
 
-                <DataGrid x:Name="PathsGrid" Grid.Column="0" Grid.Row="0"
-                      AutoGenerateColumns="False" AlternatingRowBackground="Beige"
-                      GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
+                <DataGrid x:Name="PathsGrid" Grid.Row="3" Grid.ColumnSpan="4"
+                              AutoGenerateColumns="False" AlternatingRowBackground="Beige"
+                              GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
@@ -110,8 +109,7 @@
                         <DataGridTextColumn Header="FileSystemRights" Binding="{Binding FileSystemRights}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-
-            </StackPanel>
+            </Grid>
         </TabItem>
 
         <TabItem Header="The next BIG thing" Focusable="False">
