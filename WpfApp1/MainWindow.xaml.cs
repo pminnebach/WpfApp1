@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using Ookii.Dialogs.Wpf;
 
 namespace WpfApp1
 {
@@ -85,7 +86,6 @@ namespace WpfApp1
 
             try
             {
-                // TODO: either trim quotes, or replace them to whitespace.
                 path = System.IO.Path.GetFullPath(PathTextBox.Text.Trim(quotes));
             }
             catch (System.ArgumentException ex)
@@ -142,6 +142,29 @@ namespace WpfApp1
 
                 var _p = Directory.GetParent(path);
                 path = _p?.FullName;
+            }
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                VistaFolderBrowserDialog folderDialog = new VistaFolderBrowserDialog();
+                folderDialog.Reset();
+
+                //folderDialog.RootFolder = System.Environment.SpecialFolder.Desktop;
+                folderDialog.ShowNewFolderButton = true;
+                folderDialog.Description = "Select a folder!";
+                folderDialog.UseDescriptionForTitle = true;
+                folderDialog.ShowDialog();
+
+                PathTextBox.Text = folderDialog.SelectedPath;
+                folderDialog.Reset();
+            }
+            catch (System.Exception ex)
+            {
+                string message = ex.Message;
+                MessageBox.Show(message);
             }
         }
     }

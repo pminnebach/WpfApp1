@@ -79,9 +79,10 @@
             <StackPanel Orientation="Vertical">
                 <Grid Margin="5" Height="75" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="44*" />
-                        <ColumnDefinition Width="485*" />
-                        <ColumnDefinition Width="265*" />
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="57*" />
+                        <ColumnDefinition Width="32*" />
+                        <ColumnDefinition Width="32*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
@@ -94,7 +95,8 @@
 
                     <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
                     <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" />
-                    <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="2" Click="PathButton_Click" />
+                    <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" />
+                    <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" />
                 </Grid>
 
                 <DataGrid x:Name="PathsGrid" Grid.Column="0" Grid.Row="0"
