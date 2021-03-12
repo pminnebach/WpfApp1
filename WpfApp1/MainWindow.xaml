@@ -80,8 +80,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7*" />
                     <ColumnDefinition Width="57*" />
-                    <ColumnDefinition Width="32*" />
-                    <ColumnDefinition Width="32*" />
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="75" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25" />
@@ -91,12 +91,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="User:" Grid.Row="0" Grid.Column="0" />
-                <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" />
+                <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
 
                 <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
-                <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" />
-                <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" />
-                <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" />
+                <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
+                <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" Margin="2"/>
+                <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" Margin="2"/>
 
                 <DataGrid x:Name="PathsGrid" Grid.Row="3" Grid.ColumnSpan="4"
                               AutoGenerateColumns="False" AlternatingRowBackground="Beige"
