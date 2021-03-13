@@ -1,12 +1,12 @@
-﻿using System.Windows;
+﻿using Ookii.Dialogs.Wpf;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.DirectoryServices;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
-using Ookii.Dialogs.Wpf;
-using System.DirectoryServices;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
@@ -54,7 +54,7 @@ namespace WpfApp1
             }
         }
 
-        internal async Task HeavyMethod(Label label)
+        internal static async Task HeavyMethod(Label label)
         {
             for (int i = 0; i < 10; i++)
             {

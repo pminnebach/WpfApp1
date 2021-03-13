@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.DirectoryServices;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApp1
 {
@@ -81,10 +76,9 @@ namespace WpfApp1
         public static void GetAllGroups()
         {
             SearchResultCollection results;
-            DirectorySearcher ds = null;
             DirectoryEntry de = new DirectoryEntry(GetCurrentDomainPath());
 
-            ds = new DirectorySearcher(de);
+            DirectorySearcher ds = new DirectorySearcher(de);
             // Sort by name
             ds.Sort = new SortOption("name", SortDirection.Ascending);
             ds.PropertiesToLoad.Add("name");
