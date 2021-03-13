@@ -103,7 +103,7 @@
                 <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="3" Click="BrowseButton_Click" Margin="2"/>
                 <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="4" Click="PathButton_Click" Margin="2"/>
 
-                <Label x:Name="DistinguishedNameLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" 
+                <Label x:Name="DistinguishedNameLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
                        Content="{Binding ElementName=UsersComboBox, Path=SelectedItem.DistinguishedName}"/>
                 <Button x:Name="GroupsButton" Content="Groups" Grid.Row="2" Grid.Column="3" Click="GroupsButton_Click" Margin="2"/>
 
