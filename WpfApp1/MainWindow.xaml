@@ -25,11 +25,11 @@
                     <TextBox x:Name="LastBox" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
                     <Label x:Name="FirstLabel" Width="100" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.FirstName}" />
+                        Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.FirstName}" />
                     <Label x:Name="LastLabel"  Width="100" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.LastName}" />
+                        Content="{Binding ElementName=PersonsListBox, Path=SelectedItem.LastName}" />
                     <Label x:Name="RandomLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Content="e" />
+                        Content="e" />
                 </Grid>
 
                 <Grid Margin="5">
@@ -78,7 +78,8 @@
         <TabItem Header="Files and Folders">
             <Grid Margin="5" MinHeight="350" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="57*" />
                     <ColumnDefinition Width="57*" />
                     <ColumnDefinition Width="75" />
                     <ColumnDefinition Width="75" />
@@ -90,17 +91,18 @@
                     <RowDefinition Height="100*"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="User:" Grid.Row="0" Grid.Column="0" />
+                <Label Content="User: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" />
                 <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
-                <Button x:Name="SearcheButton" Content="Search" Grid.Row="0" Grid.Column="2" Click="SearcheButton_Click" Margin="2"/>
-                <Button x:Name="ResetButton" Content="Reset" Grid.Row="0" Grid.Column="3" Click="ResetButton_Click" Margin="2"/>
+                <ComboBox x:Name="UsersComboBox" Grid.Row="0" Grid.Column="2" Margin="2" DisplayMemberPath="Name"/>
+                <Button x:Name="SearcheButton" Content="Search" Grid.Row="0" Grid.Column="3" Click="SearcheButton_Click" Margin="2"/>
+                <Button x:Name="ResetButton" Content="Reset" Grid.Row="0" Grid.Column="4" Click="ResetButton_Click" Margin="2"/>
 
-                <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
-                <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
-                <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="2" Click="BrowseButton_Click" Margin="2"/>
-                <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="3" Click="PathButton_Click" Margin="2"/>
+                <Label Content="Path: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" />
+                <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Margin="2"/>
+                <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="3" Click="BrowseButton_Click" Margin="2"/>
+                <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="4" Click="PathButton_Click" Margin="2"/>
 
-                <DataGrid x:Name="PathsGrid" Grid.Row="3" Grid.ColumnSpan="4"
+                <DataGrid x:Name="PathsGrid" Grid.Row="3" Grid.ColumnSpan="5"
                               AutoGenerateColumns="False" AlternatingRowBackground="Beige"
                               GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
                     <DataGrid.Columns>

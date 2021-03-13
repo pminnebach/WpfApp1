@@ -6,6 +6,7 @@ using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using Ookii.Dialogs.Wpf;
+using System.DirectoryServices;
 
 namespace WpfApp1
 {
@@ -25,10 +26,16 @@ namespace WpfApp1
             Paths = new ObservableCollection<Path>();
             PathsGrid.ItemsSource = Paths;
 
+            Users = new ObservableCollection<User>();
+            UsersComboBox.ItemsSource = Users;
+
+            Groups = new ObservableCollection<Group>();
         }
 
         public ObservableCollection<Person> Persons { get; set; }
         public ObservableCollection<Path> Paths { get; set; }
+        public ObservableCollection<User> Users { get; set; }
+        public ObservableCollection<Group> Groups { get; set; }
 
         private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -170,12 +177,26 @@ namespace WpfApp1
 
         private void SearcheButton_Click(object sender, RoutedEventArgs e)
         {
+            Users.Clear();
 
+            string usr = UserTextBox.Text;
+            SearchResultCollection results = Ldap.SearchForUsers(usr);
+
+            foreach (SearchResult sr in results)
+            {
+                Users.Add(new User(sr.GetPropertyValue("name")));
+            }
+
+            UsersComboBox.SelectedIndex = 0;
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
+            Paths.Clear();
+            Users.Clear();
 
+            UserTextBox.Clear();
+            PathTextBox.Clear();
         }
     }
 }

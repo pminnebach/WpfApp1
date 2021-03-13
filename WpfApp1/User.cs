@@ -10,6 +10,8 @@ namespace WpfApp1
     public class User : INotifyPropertyChanged
     {
         private string _Name;
+        private string _SamAccountName;
+        private string _UserPrincipalName;
 
         public string Name
         {
@@ -24,9 +26,48 @@ namespace WpfApp1
             }
         }
 
+        public string SamAccountName
+        {
+            get
+            {
+                return this._SamAccountName;
+            }
+            set
+            {
+                this._SamAccountName = value;
+                this.OnPropertyChanged("FirstName");
+            }
+        }
+
+        public string UserPrincipalName
+        {
+            get
+            {
+                return this._UserPrincipalName;
+            }
+            set
+            {
+                this._UserPrincipalName = value;
+                this.OnPropertyChanged("FirstName");
+            }
+        }
+
         public User(string name)
         {
             _Name = name;
+        }
+
+        public User(string name, string samAccountName)
+        {
+            _Name = name;
+            _SamAccountName = samAccountName;
+        }
+
+        public User(string name, string samAccountName, string userPrincipalName)
+        {
+            _Name = name;
+            _SamAccountName = samAccountName;
+            _UserPrincipalName = userPrincipalName;
         }
 
         protected void OnPropertyChanged(string name)
