@@ -167,5 +167,15 @@ namespace WpfApp1
                 MessageBox.Show(message);
             }
         }
+
+        private void SearcheButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -92,6 +92,8 @@
 
                 <Label Content="User:" Grid.Row="0" Grid.Column="0" />
                 <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
+                <Button x:Name="SearcheButton" Content="Search" Grid.Row="0" Grid.Column="2" Click="SearcheButton_Click" Margin="2"/>
+                <Button x:Name="ResetButton" Content="Reset" Grid.Row="0" Grid.Column="3" Click="ResetButton_Click" Margin="2"/>
 
                 <Label Content="Path:" Grid.Row="1" Grid.Column="0" />
                 <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
