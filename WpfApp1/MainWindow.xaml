@@ -102,26 +102,46 @@
                 <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="3" Click="BrowseButton_Click" Margin="2"/>
                 <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="4" Click="PathButton_Click" Margin="2"/>
 
-                <DataGrid x:Name="PathsGrid" Grid.Row="3" Grid.ColumnSpan="5"
+                <Label x:Name="DistinguishedNameLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" />
+                <Button x:Name="GroupsButton" Content="Groups" Grid.Row="2" Grid.Column="3" Click="GroupsButton_Click" Margin="2"/>
+
+                <Grid Grid.Row="3" Grid.ColumnSpan="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <DataGrid x:Name="PathsGrid" Grid.Column="0" Margin="0,0,2,0"
                               AutoGenerateColumns="False" AlternatingRowBackground="Beige"
                               GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-                        <DataGridTextColumn Header="IdentityReference" Binding="{Binding IdentityReference}"/>
-                        <DataGridTextColumn Header="AccessControlType" Binding="{Binding AccessControlType}"/>
-                        <DataGridTextColumn Header="FileSystemRights" Binding="{Binding FileSystemRights}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="IdentityReference" Binding="{Binding IdentityReference}"/>
+                            <DataGridTextColumn Header="AccessControlType" Binding="{Binding AccessControlType}"/>
+                            <DataGridTextColumn Header="FileSystemRights" Binding="{Binding FileSystemRights}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <ListBox x:Name="GroupsListBox" Grid.Column="1" Margin="2,0,0,0"
+                        HorizontalContentAlignment="Stretch" SelectionMode="Extended" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </Grid>
         </TabItem>
 
         <TabItem Header="The next BIG thing" Focusable="False">
-            <StackPanel Orientation="Vertical">
-                <Grid Margin="5">
 
-                </Grid>
-            </StackPanel>
         </TabItem>
     </TabControl>
 </Window>

@@ -30,6 +30,7 @@ namespace WpfApp1
             UsersComboBox.ItemsSource = Users;
 
             Groups = new ObservableCollection<Group>();
+            GroupsListBox.ItemsSource = Groups;
         }
 
         public ObservableCollection<Person> Persons { get; set; }
@@ -184,7 +185,12 @@ namespace WpfApp1
 
             foreach (SearchResult sr in results)
             {
-                Users.Add(new User(sr.GetPropertyValue("name")));
+                Users.Add(new User(
+                    sr.GetPropertyValue("name"),
+                    sr.GetPropertyValue("samAccountName"),
+                    sr.GetPropertyValue("UserPrincipalName"),
+                    sr.GetPropertyValue("DistinguishedName")
+                    ));
             }
 
             UsersComboBox.SelectedIndex = 0;
@@ -194,9 +200,25 @@ namespace WpfApp1
         {
             Paths.Clear();
             Users.Clear();
+            Groups.Clear();
 
             UserTextBox.Clear();
             PathTextBox.Clear();
+            DistinguishedNameLabel.Content = null;
+        }
+
+        private void GroupsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Groups.Clear();
+            var index = UsersComboBox.SelectedIndex;
+            string usr = Users[index].DistinguishedName;
+            DistinguishedNameLabel.Content = usr;
+            SearchResultCollection results = Ldap.GetAllNestedGroups(usr);
+
+            foreach (SearchResult sr in results)
+            {
+                Groups.Add(new Group(sr.GetPropertyValue("name")));
+            }
         }
     }
 }

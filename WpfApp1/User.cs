@@ -7,6 +7,7 @@ namespace WpfApp1
         private string _Name;
         private string _SamAccountName;
         private string _UserPrincipalName;
+        private string _DistinguishedName;
 
         public string Name
         {
@@ -47,6 +48,19 @@ namespace WpfApp1
             }
         }
 
+        public string DistinguishedName
+        {
+            get
+            {
+                return this._DistinguishedName;
+            }
+            set
+            {
+                this._DistinguishedName = value;
+                this.OnPropertyChanged("FirstName");
+            }
+        }
+
         public User(string name)
         {
             _Name = name;
@@ -63,6 +77,14 @@ namespace WpfApp1
             _Name = name;
             _SamAccountName = samAccountName;
             _UserPrincipalName = userPrincipalName;
+        }
+
+        public User(string name, string samAccountName, string userPrincipalName, string distinguishedName)
+        {
+            _Name = name;
+            _SamAccountName = samAccountName;
+            _UserPrincipalName = userPrincipalName;
+            _DistinguishedName = distinguishedName;
         }
 
         protected void OnPropertyChanged(string name)
