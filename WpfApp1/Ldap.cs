@@ -61,56 +61,6 @@ namespace WpfApp1
 
             //return sr = ds.FindOne();
             return ds.FindOne();
-
-            //if (sr != null)
-            //{
-            //    Debug.WriteLine(sr.GetPropertyValue("name"));
-            //    Debug.WriteLine(sr.GetPropertyValue("mail"));
-            //    Debug.WriteLine(sr.GetPropertyValue("givenname"));
-            //    Debug.WriteLine(sr.GetPropertyValue("sn"));
-            //    Debug.WriteLine(sr.GetPropertyValue("userPrincipalName"));
-            //    Debug.WriteLine(sr.GetPropertyValue("distinguishedName"));
-            //}
-        }
-
-        public static void GetAllGroups()
-        {
-            SearchResultCollection results;
-            DirectoryEntry de = new DirectoryEntry(GetCurrentDomainPath());
-
-            DirectorySearcher ds = new DirectorySearcher(de);
-            // Sort by name
-            ds.Sort = new SortOption("name", SortDirection.Ascending);
-            ds.PropertiesToLoad.Add("name");
-            ds.PropertiesToLoad.Add("memberof");
-            ds.PropertiesToLoad.Add("member");
-
-            ds.Filter = "(&(objectCategory=Group))";
-
-            results = ds.FindAll();
-
-            foreach (SearchResult sr in results)
-            {
-                if (sr.Properties["name"].Count > 0)
-                    Debug.WriteLine(sr.Properties["name"][0].ToString());
-
-                if (sr.Properties["memberof"].Count > 0)
-                {
-                    Debug.WriteLine("  Member of...");
-                    foreach (string item in sr.Properties["memberof"])
-                    {
-                        Debug.WriteLine("    " + item);
-                    }
-                }
-                if (sr.Properties["member"].Count > 0)
-                {
-                    Debug.WriteLine("  Members");
-                    foreach (string item in sr.Properties["member"])
-                    {
-                        Debug.WriteLine("    " + item);
-                    }
-                }
-            }
         }
 
         public static SearchResultCollection GetAllNestedGroups(string distinguishedName)
