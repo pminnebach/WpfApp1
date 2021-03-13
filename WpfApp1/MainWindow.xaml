@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        x:Name="mainWindow"
+        Height="450" Width="800">
     <TabControl Margin="5" Padding="5">
         <TabItem Header="Binding">
             <StackPanel Orientation="Vertical">
@@ -78,9 +79,9 @@
         <TabItem Header="Files and Folders">
             <Grid Margin="5" MinHeight="350" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10*" />
-                    <ColumnDefinition Width="57*" />
-                    <ColumnDefinition Width="57*" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="75" />
                     <ColumnDefinition Width="75" />
                 </Grid.ColumnDefinitions>
@@ -93,7 +94,7 @@
 
                 <Label Content="User: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" />
                 <TextBox x:Name="UserTextBox" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Margin="2"/>
-                <ComboBox x:Name="UsersComboBox" Grid.Row="0" Grid.Column="2" Margin="2" DisplayMemberPath="Name"/>
+                <ComboBox x:Name="UsersComboBox" Grid.Row="0" Grid.Column="2" Margin="2" DisplayMemberPath="Name" />
                 <Button x:Name="SearcheButton" Content="Search" Grid.Row="0" Grid.Column="3" Click="SearcheButton_Click" Margin="2"/>
                 <Button x:Name="ResetButton" Content="Reset" Grid.Row="0" Grid.Column="4" Click="ResetButton_Click" Margin="2"/>
 
@@ -102,7 +103,8 @@
                 <Button x:Name="BrowseButton" Content="Browse" Grid.Row="1" Grid.Column="3" Click="BrowseButton_Click" Margin="2"/>
                 <Button x:Name="PathButton" Content="Path" Grid.Row="1" Grid.Column="4" Click="PathButton_Click" Margin="2"/>
 
-                <Label x:Name="DistinguishedNameLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" />
+                <Label x:Name="DistinguishedNameLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" 
+                       Content="{Binding ElementName=UsersComboBox, Path=SelectedItem.DistinguishedName}"/>
                 <Button x:Name="GroupsButton" Content="Groups" Grid.Row="2" Grid.Column="3" Click="GroupsButton_Click" Margin="2"/>
 
                 <Grid Grid.Row="3" Grid.ColumnSpan="5">
@@ -111,7 +113,7 @@
                         <ColumnDefinition Width="50*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <DataGrid x:Name="PathsGrid" Grid.Column="0" Margin="0,0,2,0"
+                    <DataGrid x:Name="PathsGrid" Grid.Column="0" Margin="0,2,2,0"
                               AutoGenerateColumns="False" AlternatingRowBackground="Beige"
                               GridLinesVisibility="None" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
                         <DataGrid.Columns>
@@ -123,15 +125,15 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <ListBox x:Name="GroupsListBox" Grid.Column="1" Margin="2,0,0,0"
-                        HorizontalContentAlignment="Stretch" SelectionMode="Extended" >
+                    <ListBox x:Name="GroupsListBox" Grid.Column="1" Margin="2,2,0,0"
+                        HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0,2">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Name}" Grid.Column="0" />
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

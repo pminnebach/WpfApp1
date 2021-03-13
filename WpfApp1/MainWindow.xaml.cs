@@ -19,6 +19,9 @@ namespace WpfApp1
         {
             InitializeComponent();
 
+            string version = typeof(MainWindow).Assembly.GetName().Version.ToString();
+            mainWindow.Title = $"WpfApp1: {version}";
+
             Persons = new ObservableCollection<Person>();
             PersonsGrid.ItemsSource = Persons;
             PersonsListBox.ItemsSource = Persons;
@@ -212,7 +215,6 @@ namespace WpfApp1
             Groups.Clear();
             var index = UsersComboBox.SelectedIndex;
             string usr = Users[index].DistinguishedName;
-            DistinguishedNameLabel.Content = usr;
             SearchResultCollection results = Ldap.GetAllNestedGroups(usr);
 
             foreach (SearchResult sr in results)
